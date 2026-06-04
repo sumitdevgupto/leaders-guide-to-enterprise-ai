@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Agentic Imperative — A Leader's Guide to Enterprise AI Transformation</title>
+  <meta name="description" content="An executive-level guide to implementing AI agents in the enterprise across employees, processes, and products." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #1E3A6E;
+      --accent-mid: #5278B0;
+      --accent-light: #EBF0F9;
+      --accent-pale: #F5F7FC;
+      --text-primary: #1A1A1A;
+      --text-secondary: #4A4A4A;
+      --text-muted: #787878;
+      --border: rgba(0,0,0,0.10);
+      --border-strong: rgba(0,0,0,0.18);
+      --bg: #FAFAF8;
+      --bg-card: #FFFFFF;
+      --success: #0F6E56;
+      --danger: #8B2020;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Source Sans 3', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--accent);
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .site-header .brand {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+    .site-header .brand span { color: #fff; }
+    .header-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--accent);
+      padding: 5rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.04);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: 30%;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.03);
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 760px; margin: 0 auto; position: relative; z-index: 1; }
+    .kicker {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 46px);
+      font-weight: 700;
+      line-height: 1.12;
+      color: #fff;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: rgba(255,255,255,0.75); }
+    .hero-standfirst {
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 300;
+      color: rgba(255,255,255,0.78);
+      max-width: 640px;
+      border-left: 3px solid rgba(255,255,255,0.3);
+      padding-left: 1rem;
+    }
+
+    /* ── STAT BAR ── */
+    .stat-bar {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-bar-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      divide-x: 1px solid var(--border);
+    }
+    .stat-item {
+      padding: 1.75rem 2rem;
+      border-right: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-val {
+      font-family: var(--serif);
+      font-size: 38px;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--accent-pale);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 3rem;
+    }
+    .toc-title {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+    .toc ol { list-style: none; counter-reset: toc; }
+    .toc ol li { counter-increment: toc; display: flex; gap: 0.6rem; align-items: baseline; padding: 4px 0; }
+    .toc ol li::before { content: "0" counter(toc); font-size: 11px; color: var(--accent-mid); font-weight: 600; min-width: 22px; }
+    .toc a { font-size: 14px; color: var(--accent); text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+
+    /* ── SECTION ── */
+    .section { margin-bottom: 3.5rem; }
+    .section-rule {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-num {
+      font-family: var(--serif);
+      font-size: 13px;
+      color: var(--accent-mid);
+      font-weight: 400;
+    }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+    h2 {
+      font-family: var(--serif);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    h3 {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 2rem 0 0.6rem;
+    }
+    p { font-size: 15.5px; line-height: 1.78; color: var(--text-secondary); margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    /* ── DIVIDE BOX ── */
+    .divide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1.75rem 0;
+    }
+    .divide-col { padding: 1.5rem; }
+    .divide-col:first-child { border-right: 1px solid var(--border); }
+    .divide-heading {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid currentColor;
+    }
+    .divide-heading.reactive { color: var(--danger); border-color: var(--danger); }
+    .divide-heading.transform { color: var(--success); border-color: var(--success); }
+    .divide-item {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      padding: 5px 0;
+    }
+    .divide-item .icon { font-size: 15px; margin-top: 1px; flex-shrink: 0; }
+    .divide-item.bad .icon { color: var(--danger); }
+    .divide-item.good .icon { color: var(--success); }
+
+    /* ── PILLARS ── */
+    .pillar-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 1.75rem 0;
+    }
+    .pillar {
+      background: var(--bg-card);
+      padding: 1.5rem 1.25rem;
+    }
+    .pillar-num {
+      font-family: var(--serif);
+      font-size: 32px;
+      color: var(--accent-mid);
+      opacity: 0.5;
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+    .pillar-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    .pillar-body { font-size: 13px; line-height: 1.65; color: var(--text-muted); }
+
+    /* ── CALLOUT ── */
+    .callout {
+      background: var(--accent-light);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 1.1rem 1.4rem;
+      margin: 1.75rem 0;
+    }
+    .callout p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--accent);
+      font-weight: 500;
+      margin: 0;
+    }
+
+    /* ── PRINCIPLES ── */
+    .principles { margin: 1.5rem 0; }
+    .principle {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+    .principle:last-child { border-bottom: none; }
+    .principle-icon {
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      color: var(--accent);
+    }
+    .principle-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+    .principle-body { font-size: 13.5px; line-height: 1.6; color: var(--text-muted); }
+
+    /* ── PHASES ── */
+    .phases { counter-reset: phase; margin: 1.75rem 0; }
+    .phase {
+      counter-increment: phase;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0;
+      position: relative;
+      padding-bottom: 2rem;
+    }
+    .phase:last-child { padding-bottom: 0; }
+    .phase-left { display: flex; flex-direction: column; align-items: center; }
+    .phase-dot {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: var(--sans);
+      position: relative;
+      z-index: 1;
+    }
+    .phase-line {
+      flex: 1;
+      width: 1px;
+      background: var(--border);
+      margin-top: 8px;
+    }
+    .phase:last-child .phase-line { display: none; }
+    .phase-content { padding: 6px 0 0 1rem; }
+    .phase-eyebrow {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-mid);
+      margin-bottom: 3px;
+    }
+    .phase-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .phase-body { font-size: 13.5px; line-height: 1.65; color: var(--text-muted); }
+
+    /* ── CLOSING CTA ── */
+    .cta-block {
+      background: var(--accent);
+      border-radius: 12px;
+      padding: 2.5rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    .cta-block h2 { color: #fff; font-size: 24px; margin-bottom: 0.75rem; }
+    .cta-block p { color: rgba(255,255,255,0.75); font-size: 15px; max-width: 540px; margin: 0 auto; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .hero { padding: 3rem 1.25rem 2.5rem; }
+      .main { padding: 2rem 1.25rem 4rem; }
+      .stat-bar-inner { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid var(--border); }
+      .stat-item:last-child { border-bottom: none; }
+      .pillar-grid { grid-template-columns: 1fr; }
+      .divide-grid { grid-template-columns: 1fr; }
+      .divide-col:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+      h2 { font-size: 24px; }
+      .phase { grid-template-columns: 40px 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="brand"><span>AI Strategy</span> · Executive Briefing</div>
+    <div class="header-meta">Anthropic · 2026</div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="kicker">Enterprise AI Transformation</span>
+      <h1>The Agentic Imperative:<br><em>A Leader's Guide to Enterprise AI</em></h1>
+      <p class="hero-standfirst">AI adoption is no longer the strategic question. Scale and integration are. Organisations that deploy AI as a chatbot will see incremental returns. Those that embed agentic AI into how employees work, processes run, and products are built will compound advantage quarter on quarter.</p>
+    </div>
+  </section>
+
+  <div class="stat-bar">
+    <div class="stat-bar-inner">
+      <div class="stat-item">
+        <span class="stat-val">40%</span>
+        <div class="stat-label">of US employees report using AI at work — up from 20% in 2023</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val">3×</span>
+        <div class="stat-label">pillars must shift simultaneously — people, processes, and products</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-val">Now</span>
+        <div class="stat-label">early movers build data flywheels and institutional knowledge competitors cannot replicate</div>
+      </div>
+    </div>
+  </div>
+
+  <main class="main">
+
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">Contents</p>
+      <ol>
+        <li><a href="#divide">The Divide That Determines Your Trajectory</a></li>
+        <li><a href="#pillars">The Three Pillars of AI Transformation</a></li>
+        <li><a href="#context">The Context Multiplier</a></li>
+        <li><a href="#deployment">A Practical Path to Deployment</a></li>
+        <li><a href="#compounding">The Compounding Head Start</a></li>
+      </ol>
+    </nav>
+
+    <!-- SECTION 1 -->
+    <section class="section" id="divide">
+      <div class="section-rule">
+        <span class="section-num">01</span>
+        <div class="section-line"></div>
+      </div>
+      <h2>The Divide That Determines Your Trajectory</h2>
+      <p>Most organisations have crossed the threshold of AI awareness. The harder question is which side of the agentic divide they sit on. A chatbot answers questions in isolation. An agent reasons through complex tasks, executes multi-step workflows, applies domain expertise, and takes action — making it fundamental to operations rather than adjacent to them.</p>
+      <p>With increasingly capable models and tooling, functions beyond engineering — legal, marketing, sales, finance, operations — can now deploy AI that acts on their domain-specific tasks, not just answers questions about them. The distinction is not subtle. It is the difference between a tool and infrastructure.</p>
+
+      <div class="divide-grid">
+        <div class="divide-col">
+          <div class="divide-heading reactive">Reactive Adoption</div>
+          <div class="divide-item bad"><span class="icon">✕</span><span>AI as a point solution — a chatbot here, a summariser there</span></div>
+          <div class="divide-item bad"><span class="icon">✕</span><span>Pilots that impress in demos but never scale beyond one team</span></div>
+          <div class="divide-item bad"><span class="icon">✕</span><span>Generic output employees must rewrite before it is useful</span></div>
+          <div class="divide-item bad"><span class="icon">✕</span><span>Incremental gains that plateau within a quarter</span></div>
+          <div class="divide-item bad"><span class="icon">✕</span><span>Tribal knowledge that stays with individuals, not the institution</span></div>
+        </div>
+        <div class="divide-col">
+          <div class="divide-heading transform">True Transformation</div>
+          <div class="divide-item good"><span class="icon">✓</span><span>AI embedded in how every employee does their best work</span></div>
+          <div class="divide-item good"><span class="icon">✓</span><span>Institutional knowledge encoded once, shared automatically at scale</span></div>
+          <div class="divide-item good"><span class="icon">✓</span><span>Output that reflects your standards, your tools, your voice</span></div>
+          <div class="divide-item good"><span class="icon">✓</span><span>Processes that compound — every expert review improves the next</span></div>
+          <div class="divide-item good"><span class="icon">✓</span><span>Products that let customers do things not previously possible</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="section" id="pillars">
+      <div class="section-rule">
+        <span class="section-num">02</span>
+        <div class="section-line"></div>
+      </div>
+      <h2>The Three Pillars of AI Transformation</h2>
+      <p>Organisations that achieve lasting advantage rethink three things simultaneously. Changing only one or two produces improvement. Changing all three produces transformation — and the compounding effects across pillars are greater than the sum of each in isolation.</p>
+
+      <div class="pillar-grid">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">Upskilling Employees</div>
+          <div class="pillar-body">Every knowledge worker gains access to AI configured with your organisation's standards, tools, and institutional context. Not a generic assistant — one that knows your business.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">Accelerating Processes</div>
+          <div class="pillar-body">Information-dense, error-sensitive workflows — compliance, regulatory submissions, contract review, reporting — compress from weeks to minutes while quality improves continuously.</div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">Transforming Products</div>
+          <div class="pillar-body">Combining AI with proprietary data, domain expertise, and existing trust relationships creates products that are genuinely difficult for competitors to replicate.</div>
+        </div>
+      </div>
+
+      <h3>On the employee pillar</h3>
+      <p>The productivity gains early AI adopters — engineers and analysts — have enjoyed for years are now available to every knowledge worker. The critical difference between generic AI output and output your team can ship is context. Give the AI your terminology, your standards, your tools, and your institutional knowledge, and output starts to feel like it came from an experienced colleague rather than a template engine.</p>
+      <p>Expertise does not go away. It goes further. A financial analyst stops spending hours pulling data from three systems and starts interpreting what the data means. A marketer stops rebuilding the same competitive analysis from scratch each quarter and focuses on refining the strategy behind it.</p>
+
+      <h3>On the process pillar</h3>
+      <p>The organisations achieving the most dramatic gains build systems where human expertise feeds back continuously into the AI's knowledge base. Each expert review makes future processes faster and more accurate. Senior specialists stop being bottlenecked by volume. Junior staff gain access to institutional knowledge that previously took years to acquire. The entire team operates at a higher level, because the AI has absorbed the routine complexity that once consumed the majority of their hours.</p>
+
+      <div class="callout">
+        <p>The compounding dynamic is the strategic prize. Organisations that begin encoding their standards, compliance requirements, and domain expertise now accumulate months of advantage that later entrants cannot buy back.</p>
+      </div>
+
+      <h3>On the product pillar</h3>
+      <p>In regulated industries, the trust boundary determines what ships. Any AI product that requires sensitive client data to leave your security perimeter faces compliance reviews that can take months and often end in rejection. Solving the trust architecture first — ensuring AI can operate within your existing governance infrastructure — is the prerequisite for product transformation, not an afterthought. Organisations that solve this first can move quickly. Those that treat it as an afterthought will find their most promising AI products stalled indefinitely in compliance review.</p>
+      <p>The opportunity extends beyond cost reduction. New product capabilities generate net-new revenue and create competitive advantages that compound. The organisations that invest earliest will see the largest returns, because the data, integrations, and customer habits they establish today become the foundation for everything they build next.</p>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="section" id="context">
+      <div class="section-rule">
+        <span class="section-num">03</span>
+        <div class="section-line"></div>
+      </div>
+      <h2>The Context Multiplier</h2>
+      <p>Two organisations using the same AI model will produce dramatically different results depending on how much context they provide. The mechanism that closes this gap at enterprise scale is the concept of reusable, shareable configurations — packages of tools, workflows, and knowledge sources that give AI role-specific expertise.</p>
+      <p>A sales team's AI knows your CRM, your pipeline, and your sales methodology. A legal team's AI knows your contract templates, your review workflow, and your risk framework. A finance team's AI knows your chart of accounts, reconciliation procedures, and reporting standards. Each configuration is built once and shared automatically — the best practices of your most experienced people become the default for every new hire and every adjacent team across the organisation.</p>
+      <p>This is why encoding organisational knowledge is powerful. Specialist knowledge shared across the organisation means the best practices of one team become the default for every team. The knowledge stops being tribal and starts being institutional.</p>
+
+      <div class="callout">
+        <p>Build once, share everywhere. The marginal cost of sharing encoded knowledge across your organisation is zero. The marginal value is enormous — and it compounds with every new team that comes online.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="section" id="deployment">
+      <div class="section-rule">
+        <span class="section-num">04</span>
+        <div class="section-line"></div>
+      </div>
+      <h2>A Practical Path to Deployment</h2>
+      <p>Organisations that get the most from enterprise AI share a deployment pattern that balances ambition with discipline. Four principles guide effective rollouts before the phased plan begins.</p>
+
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-icon">⊙</div>
+          <div>
+            <div class="principle-title">Start with specificity, not scale</div>
+            <div class="principle-body">Generic output in a first interaction rarely earns a second chance. Give the AI your institutional context from day one, before scale matters. The organisations that succeed give Claude enough context to produce output that feels like it came from someone who understands the business.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">◎</div>
+          <div>
+            <div class="principle-title">Choose pilots with a measurable finish line</div>
+            <div class="principle-body">Each pillar has different success metrics. Smarter employees — adoption rates and time savings. Faster processes — cycle time compression and quality scores. Transformative products — revenue impact and speed to market. Define success criteria upfront, before the pilot starts, so results are unambiguous.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">◈</div>
+          <div>
+            <div class="principle-title">Build configurations for reuse from the beginning</div>
+            <div class="principle-body">Resist the temptation to build a quick solution for one team and worry about reuse later. Configurations built for one team should benefit the entire organisation. When you encode tribal knowledge once, every team that deploys it gets the benefit immediately.</div>
+          </div>
+        </div>
+        <div class="principle">
+          <div class="principle-icon">⊛</div>
+          <div>
+            <div class="principle-title">Never underestimate the governance layer</div>
+            <div class="principle-body">Admin controls, auditability, and organisation-specific guardrails are prerequisites for broad rollout — not features to add after adoption takes off. Organisations that skip governance early spend more time cleaning up unsanctioned usage than they saved by moving fast.</div>
+          </div>
+        </div>
+      </div>
+
+      <h3>The three-phase rollout</h3>
+
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-dot">1</div>
+            <div class="phase-line"></div>
+          </div>
+          <div class="phase-content">
+            <div class="phase-eyebrow">Weeks 1–4</div>
+            <div class="phase-title">Set evaluation and success criteria</div>
+            <div class="phase-body">Identify two to three teams with clear pain points and measurable workflows. Encode your team's specific standards and processes. Define what success looks like before anyone uses the tool — with enough specificity that results are unambiguous. A sales team might target call prep time reduced by 50%. A legal team might target contract review turnaround cut from five days to one. A documentation team might target first-draft quality reaching 80% of the approved final version.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-dot">2</div>
+            <div class="phase-line"></div>
+          </div>
+          <div class="phase-content">
+            <div class="phase-eyebrow">Months 2–3</div>
+            <div class="phase-title">Champion pilot in production</div>
+            <div class="phase-body">Two to three teams use the configured AI in live production workflows — not sandboxed experiments. Measure adoption weekly. Collect qualitative feedback alongside quantitative metrics, because the moments when employees discover unexpected value are often more informative than time-saved calculations. The goal is not perfection but proof of value and a clear picture of what must change before broader rollout.</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="phase-left">
+            <div class="phase-dot">3</div>
+            <div class="phase-line"></div>
+          </div>
+          <div class="phase-content">
+            <div class="phase-eyebrow">Months 4–6</div>
+            <div class="phase-title">Scale impact and governance</div>
+            <div class="phase-body">Deploy admin marketplace controls. Establish configuration review and approval workflows. Begin rollout to additional teams using the configurations refined during the pilot. Each subsequent wave moves faster than the last — the institutional knowledge already encoded makes every new deployment cheaper and more effective than the one before it. This is the compounding dynamic in action.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section class="section" id="compounding">
+      <div class="section-rule">
+        <span class="section-num">05</span>
+        <div class="section-line"></div>
+      </div>
+      <h2>The Compounding Head Start</h2>
+      <p>The most common mistake in AI transformation is waiting until the strategy is comprehensive before taking the first step. The most successful organisations start narrow, learn fast, and expand with conviction. They pick a process with obvious pain and clear success criteria. They give AI the context it needs to do real work. They measure results honestly and build on what they learn.</p>
+      <p>Teams that centralise AI within their operations now — rather than treating agentic AI as an add-on layer — accumulate a compounding advantage: trained teams, proven workflows, institutional knowledge encoded and ready to share, and a governance infrastructure that supports rapid expansion without the risk of shadow AI sprawl.</p>
+      <p>Every month of accumulated expert feedback, approvals, and refinements makes the next month's output faster and more accurate. The organisations that start earliest build the largest advantage — not because they had a better strategy on paper, but because they acted sooner and learned faster.</p>
+
+      <div class="callout">
+        <p>Your organisation does not need a perfect plan. It needs a specific starting point, quantifiable success criteria, and the willingness to learn from what happens next.</p>
+      </div>
+
+      <div class="cta-block">
+        <h2>Ready to begin?</h2>
+        <p>Start with one team, one pain point, one measurable outcome. The compounding advantage begins on the day you start — not the day the strategy is complete.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Source: <em>Building AI Agents for the Enterprise — Best Practices from Industry Leaders</em>, Anthropic, 2026.</p>
+    <p style="margin-top:6px;">This article is an executive synthesis prepared for CXO audiences.</p>
+  </footer>
+
+</body>
+</html>
